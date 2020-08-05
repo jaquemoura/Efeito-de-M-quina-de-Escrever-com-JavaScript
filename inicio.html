@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TypeWriter</title>
+</head>
+<body>
+
+<style>
+  body {
+    background: #0e1013;
+  }
+  h1 {
+    max-width: 480px;
+    text-align: center;
+    margin: 60px auto;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
+  }
+  h1::after {
+    content: '|';
+    margin-left: 5px;
+    opacity: 1;
+    animation: pisca .7s infinite;
+  }
+
+  @keyframes pisca {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+</style>
+
+<h1>Cursos de UX/UI Design e Front End na Origamid</h1>
+
+<script>
+  /*2° Criar Função que vai fazer a animação*/
+  function typeWrite(elemento) {
+    /*innerHTML Pega o que está dentro do H1, o texto puro sem as tags... Utilizando Método split para separar as letras, ele serve para dividir o texto em diferentes partes dentro de um Array, precisa passar um parametro informando em que momento vai ser dividido, se colocar só aspas simples e mais nada ele vai dividir tudo todas as letras*/
+    const textoArray = elemento.innerHTML.split('');
+    /*Limpar o texto para as letras serem adicionadas uma por uma*/
+    elemento.innerHTML = '';
+
+    textoArray.forEach((letra, i) => {
+        /*Função para criar um tempo que cada item irá ser adicionado. O Primeiro parametro é a função e o segundo parametro é o tempo que a função será executada... ssa multiplicação para adicionar cada letra após a outra e não todas letras as mesmo tempo...+= para adicionar cada letra seguida da outra*/
+        setTimeout(() => elemento.innerHTML += letra, 75 * i);
+    });
+  }
+
+  /*1° Pegar a frase que está envolvida pelo h1*/
+  const titulo = document.querySelector('h1');
+  typeWrite(titulo);
+  
+</script>
+
+</body>
+</html>
